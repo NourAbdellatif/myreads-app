@@ -11,13 +11,13 @@ export default function NavBar() {
         </Navbar.Brand>
         <Nav className="me-auto">
           <Link className="nav-link" to="/reading" style={{ fontSize: 20 }}>
-            Reading
+            Currently Reading
           </Link>
           <Link className="nav-link" to="/complete" style={{ fontSize: 20 }}>
-            Complete
+            Want To Read
           </Link>
           <Link className="nav-link" to="/to-read" style={{ fontSize: 20 }}>
-            To Read
+            Read
           </Link>
         </Nav>
       </Container>
