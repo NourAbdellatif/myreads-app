@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import { getAll } from "../api/BooksAPI";
 import Book from "./Book";
 import BookDisplay from "./BookDisplay";
+import SearchButton from "./SearchButton";
 
 export default function Home() {
   const [books, setBooks] = useState([]);
@@ -35,6 +36,7 @@ export default function Home() {
         books={books.filter((book) => book.shelf === "read")}
         setBooks={setBooks}
       />
+      <SearchButton></SearchButton>
     </Container>
   );
 }

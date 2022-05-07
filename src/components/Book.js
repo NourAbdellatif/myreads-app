@@ -11,18 +11,8 @@ export default function Book(props) {
       )
     );
   }
-  let CRstyle = "";
-  let Rstyle = "";
-  let WTRstyle = "";
-  if (props.book.shelf === "currentlyReading") {
-    CRstyle = "red";
-  } else if (props.book.shelf === "read") {
-    Rstyle = "red";
-  } else if (props.book.shelf === "wantToRead") {
-    WTRstyle = "red";
-  }
   return (
-    <Card style={{ width: "12rem" }} className="border-0">
+    <Card style={{ width: "12rem" }} className="border-0 mb-5">
       <Card.Img
         variant="top"
         src={props.book.imageLinks.thumbnail}
@@ -31,7 +21,7 @@ export default function Book(props) {
       <Card.Body className="justify-content-center">
         <Card.Title className="fs-6">{props.book.title}</Card.Title>
         <Card.Subtitle className="text-muted">
-          {props.book.authors.join(",")}
+          {props.book.authors?.join(",")}
         </Card.Subtitle>
       </Card.Body>
       <Dropdown>
@@ -41,19 +31,37 @@ export default function Book(props) {
 
         <Dropdown.Menu>
           <Dropdown.Item
-            style={{ backgroundColor: CRstyle }}
+            style={
+              props.book.shelf === "currentlyReading"
+                ? {
+                    backgroundColor: "red",
+                  }
+                : {}
+            }
             onClick={() => moveBook("currentlyReading")}
           >
             Currently Reading
           </Dropdown.Item>
           <Dropdown.Item
-            style={{ backgroundColor: WTRstyle }}
+            style={
+              props.book.shelf === "wantToRead"
+                ? {
+                    backgroundColor: "red",
+                  }
+                : {}
+            }
             onClick={() => moveBook("wantToRead")}
           >
             Want to read
           </Dropdown.Item>
           <Dropdown.Item
-            style={{ backgroundColor: Rstyle }}
+            style={
+              props.book.shelf === "read"
+                ? {
+                    backgroundColor: "red",
+                  }
+                : {}
+            }
             onClick={() => moveBook("read")}
           >
             Read
