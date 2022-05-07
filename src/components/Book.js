@@ -15,7 +15,7 @@ export default function Book(props) {
     <Card style={{ width: "12rem" }} className="border-0 mb-5">
       <Card.Img
         variant="top"
-        src={props.book.imageLinks.thumbnail}
+        src={props.book.imageLinks?.thumbnail}
         style={{ objectFit: "fill", maxHeight: "12rem", minHeight: "15rem" }}
       />
       <Card.Body className="justify-content-center">
@@ -65,6 +65,9 @@ export default function Book(props) {
             onClick={() => moveBook("read")}
           >
             Read
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => moveBook("asdsada")}>
+            None
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

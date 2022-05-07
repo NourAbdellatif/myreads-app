@@ -12,7 +12,7 @@ export default function BookDisplay(props) {
         </>
       )}
 
-      {props.books.length > 0 ? (
+      {props.books?.length > 0 ? (
         <Row className="justify-content-center">
           {props.books.map((book) => (
             <Book

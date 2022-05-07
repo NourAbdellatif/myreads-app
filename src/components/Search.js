@@ -8,27 +8,26 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const updateQuery = (e) => {
-    e.preventDefault();
     try {
-      search(query).then((data) => setBooks(data));
+      search(e).then((data) => setBooks(data));
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <Container className="mt-2">
-      <form onSubmit={(event) => updateQuery(event)}>
+      <form>
         <div className="input-group col-md-4">
           <input
             className="form-control py-2 border-right-0 border"
             type="search"
             placeholder="Search Books ...."
             id="example-search-input"
-            onChange={(e) => setQuery(e.target.value.trim())}
+            onChange={(e) => updateQuery(e.target.value.trim())}
           />
-          <Button onClick={updateQuery}>
+          <div className="btn btn-outline-secondary">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </Button>
+          </div>
         </div>
       </form>
       <BookDisplay books={books}></BookDisplay>
