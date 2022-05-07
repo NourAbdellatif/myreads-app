@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Button, Col, Container, Form, InputGroup } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import BookDisplay from "./BookDisplay";
 import { search } from "../api/BooksAPI";
 export default function Search() {
-  const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const updateQuery = (e) => {
     try {

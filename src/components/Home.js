@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { getAll } from "../api/BooksAPI";
-import Book from "./Book";
 import BookDisplay from "./BookDisplay";
 import SearchButton from "./SearchButton";
 
@@ -18,7 +17,6 @@ export default function Home() {
   useEffect(() => {
     getBooks();
   }, []);
-  console.log(books);
   return (
     <Container>
       <BookDisplay
