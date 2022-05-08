@@ -16,6 +16,7 @@ export default function BookDisplay(props) {
         <Row className="justify-content-center">
           {props.books.map((book) => (
             <Book
+              mainBooks={props.mainBooks}
               books={props.books}
               setBooks={props.setBooks}
               key={book.id}

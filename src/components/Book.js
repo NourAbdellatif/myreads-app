@@ -5,12 +5,17 @@ import { update } from "../api/BooksAPI";
 export default function Book(props) {
   function moveBook(shelf) {
     const newBook = { ...props.book, shelf };
-    update({ id: props.book.id }, shelf).then(() =>
-      props.setBooks((books) =>
-        books.map((book) => (book.id === props.book.id ? newBook : book))
+    update({ id: props.book.id }, shelf)
+      .then(() =>
+        props.setBooks((books) =>
+          books.map((book) => (book.id === props.book.id ? newBook : book))
+        )
       )
-    );
+      .catch((err) => console.log(err));
   }
+  const shelf =
+    props.book.shelf ||
+    props.mainBooks?.find((mainBook) => mainBook.id === props.book.id)?.shelf;
   return (
     <Card style={{ width: "12rem" }} className="border-0 mb-5">
       <Card.Img
@@ -32,7 +37,7 @@ export default function Book(props) {
         <Dropdown.Menu>
           <Dropdown.Item
             style={
-              props.book.shelf === "currentlyReading"
+              shelf === "currentlyReading"
                 ? {
                     backgroundColor: "red",
                   }
@@ -44,7 +49,7 @@ export default function Book(props) {
           </Dropdown.Item>
           <Dropdown.Item
             style={
-              props.book.shelf === "wantToRead"
+              shelf === "wantToRead"
                 ? {
                     backgroundColor: "red",
                   }
@@ -56,7 +61,7 @@ export default function Book(props) {
           </Dropdown.Item>
           <Dropdown.Item
             style={
-              props.book.shelf === "read"
+              shelf === "read"
                 ? {
                     backgroundColor: "red",
                   }

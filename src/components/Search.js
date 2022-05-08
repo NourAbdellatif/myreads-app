@@ -1,11 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import BookDisplay from "./BookDisplay";
-import { search } from "../api/BooksAPI";
+import { getAll, search } from "../api/BooksAPI";
 export default function Search() {
   const [books, setBooks] = useState([]);
+  const [mainBooks, setMainBooks] = useState([]);
+  const getBooks = async () => {
+    try {
+      const data = await getAll();
+      setMainBooks(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getBooks();
+  }, []);
   const updateQuery = (e) => {
     try {
       search(e).then((data) => setBooks(data));
@@ -13,6 +25,7 @@ export default function Search() {
       console.log(err);
     }
   };
+
   return (
     <Container className="mt-2">
       <form>
@@ -29,7 +42,11 @@ export default function Search() {
           </div>
         </div>
       </form>
-      <BookDisplay books={books}></BookDisplay>
+      <BookDisplay
+        setBooks={setMainBooks}
+        mainBooks={mainBooks}
+        books={books}
+      ></BookDisplay>
     </Container>
   );
 }
